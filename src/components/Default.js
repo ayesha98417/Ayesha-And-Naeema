@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-
 class Default extends Component {
-    
+    constructor(props) {
+        super(props);
+        this.state = {  }
+    }
     render() { 
-        return ( 
-            <div>
-                <h3>No Items</h3>
-            </div>
-         );
+        return (
+            <h1>No Item</h1>
+          );
     }
 }
  

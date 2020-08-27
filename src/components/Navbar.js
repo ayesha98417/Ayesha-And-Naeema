@@ -1,99 +1,94 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import '../App.css';
 import logo from "../logo.png";
 import styled from 'styled-components';
-class Navbar extends Component {
+import TooltipReact from "./Tooltip";
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    NavbarText,
+    Button
+  } from 'reactstrap';
+  
+
+function NavBar(props) {
     
-    render() { 
+    
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen(!isOpen);
+    
         return ( 
             <div>
-            <Navwrapper className="navbar navbar-expand-sm  px-sm-5 " >
-                <img src={logo} alt="store" className="navbar-brand" />
-
-                <BrowserRouter>
-                <ul className="navbar-nav align-items-center ">
-
-                <li className="nav-item ml-5">
-                    <Link to="/Home" className="nav-link">Home</Link>
-                </li>
-
-                <li className="nav-item ml-2">
-                    <Link to="/ProductList" className="nav-link">Products</Link>
-                </li>
-
-                <li className="nav-item ml-2">
-                    <Link to="/WishList" className="nav-link">Wish-List</Link>
-                </li>
-                </ul>
-
-                <form className="form-inline ml-5" style={{alignContent:"center"}}>
-                    <input className="form-control form-control-sm" style={{width: "250px"}} type="search" placeholder="Search" aria-label="Search"></input>
-
-                    <button><i class="fab fa-sistrix"></i></button>
-                </form>
-                
-                <Link to='/Login' className="ml-auto"><button type="button" class="btn btn-outline-primary ">LogIn</button></Link>
-                <Link to="/Signup" className="ml-2"><button type="button" class="btn btn-outline-primary ">SignUp</button></Link>
-
-                  
-            </BrowserRouter>
-            </Navwrapper> 
-
-            <NavWrap className="navbar navbar-nav navbar-expand-sm  px-sm-5">
             <BrowserRouter>
-            <ul className="navbar-nav align-items-center ">
-            
-                <li className="nav-item ml-5">
-                    <Link to="/Watches" className="nav-link">Watches</Link>
-                </li>
-
-                <li className="nav-item ml-2">
-                    <Link to="/Perfumes" className="nav-link">Perfumes</Link>
-                </li>
-
-                <li className="nav-item ml-2">
-                    <Link to="/GiftBoxes" className="nav-link">Gift Boxes</Link>
-                </li>
-
-                </ul>
-
-                <li style={{fontSize:"30px"}} className="ml-auto"><Link to="/points" className="nav-link"><i className="far fa-gem"></i></Link></li>
-                <li style={{fontSize:"30px"}} className="ml-4"><Link to="/history" className="nav-link"><i className="fas fa-history"></i></Link></li>
-                <li style={{fontSize:"30px"}} className="ml-4"><Link to="/notification" className="nav-link"><i className="far fa-bell"></i></Link></li>
+            <Navbar className="navbar navbar-expand-sm  px-sm-5 header " > 
+            <NavbarBrand className="mr-auto" href="/"><img src={logo} alt="store" className="navbar-brand" /></NavbarBrand>
+                <NavbarToggler onClick={toggle} />
                 
+               <Collapse isOpen={isOpen} navbar>
+                            <Nav navbar>
+                            <NavItem>
+                                <Link className="nav-link header-links m-2"  to='/home'> Home</Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link className="nav-link header-links m-2" to='/aboutus'> About Us</Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link className="nav-link header-links m-2" to='/contactus'> Contact Us</Link>
+                            </NavItem>
+                            </Nav>
+
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                <Link to='/Login'><button  className="m-2 Button" > Login</button></Link>
+                                <Link to='/Signup'><button  className="m-2 Button" > Sign up</button></Link>
+                                  
+                                </NavItem>
+                            </Nav>                   
+                       </Collapse>
+                        </Navbar> 
+                        <Navbar light expand="md headerL">
+                    <div className="container headerL">
+                        <NavbarToggler onClick={toggle} />
+                        
+                        <Collapse isOpen={isOpen} navbar>
+                            <Nav navbar>
+                            <NavItem>
+                                <Link className="nav-link headerl-links mr-2"  to='/Watches'> Watches</Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link className="nav-link headerl-links mr-1" to='/Perfumes'> Perfumes</Link>
+                            </NavItem>
+                            <NavItem>
+                                <Link className="nav-link headerl-links mr-1"  to='/wishlist'>Wishlist</Link>
+                            </NavItem>
+                            
+                            </Nav>
+
+                            <Nav  navbar className="ml-auto">
+                                <NavItem>
+                                <Link className="nav-link ml-2"  to='/Points' data-tip data-for="Your Points"><span><i class="fa fa-gem" aria-hidden="true"></i></span></Link></NavItem>
+                                <TooltipReact place="bottom" id="Your Points"><span>Your Points</span></TooltipReact>
+                                <NavItem><Link className="nav-link ml-2"  to='/purchasehistory' data-tip data-for="Purchase History"><span><i class="fa fa-history" aria-hidden="true"></i></span></Link></NavItem>
+                                <TooltipReact place="bottom" id="Purchase History"><span>History</span></TooltipReact>
+                                <NavItem><Link className="nav-link"  to='/notification' data-tip data-for="Notifications"><span><i class="fa fa-bell" aria-hidden="true"></i></span></Link>
+                                </NavItem> 
+                                <TooltipReact place="bottom" id="Notifications"><span>Notifications</span></TooltipReact>
+                            </Nav>
+                        </Collapse>
+                    </div>
+                </Navbar>               
                 </BrowserRouter>
-                </NavWrap>   
+                
+                
          </div>
          );
         } 
-    }
-        const Navwrapper= styled.nav `
-            background: var(--mainWhite);
-            .nav-link {
-                color: var(--mainBlue) !important;
-                font-size: 1rem;
-                 &: hover{
-                     color: var(--lightBlue) !important;
-                     text : "Notifications";
-                 }
-            }
-        `
-
-        const NavWrap= styled.nav `
-            background: var(--lightBlue);
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-            .nav-link {
-                color: var(--mainWhite) !important;
-                font-size: 0.9rem; 
-                &: hover{
-                    color: #FFFF66 !important;
-                }}
-        `
-
-       
     
- 
-export default Navbar;
+export default NavBar;
