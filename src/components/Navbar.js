@@ -43,6 +43,10 @@ function NavBar(props) {
                                 <Link className="nav-link header-links m-2" to='/contactus'> Contact Us</Link>
                             </NavItem>
                             </Nav>
+                            <form className="form-inline search ml-5" style={{alignContent:"center"}}>
+                                <input className="form-control form-control-sm " style={{width: "250px", height:"3rem"}} type="search" placeholder="Search" aria-label="Search"></input>
+                                <button style={{height:"3rem"}}><i class="fab fa-sistrix"></i></button>
+                            </form>
 
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
@@ -73,11 +77,11 @@ function NavBar(props) {
 
                             <Nav  navbar className="ml-auto">
                                 <NavItem>
-                                <Link className="nav-link ml-2"  to='/Points' data-tip data-for="Your Points"><span><i class="fa fa-gem" aria-hidden="true"></i></span></Link></NavItem>
+                                <Link className="nav-link tip ml-2"  to='/Points' data-tip data-for="Your Points"><span><i class="fa fa-gem " aria-hidden="true"></i></span></Link></NavItem>
                                 <TooltipReact place="bottom" id="Your Points"><span>Your Points</span></TooltipReact>
-                                <NavItem><Link className="nav-link ml-2"  to='/purchasehistory' data-tip data-for="Purchase History"><span><i class="fa fa-history" aria-hidden="true"></i></span></Link></NavItem>
+                                <NavItem><Link className="nav-link ml-2"  to='/purchasehistory' data-tip data-for="Purchase History"><span><i class="fa fa-history tip" aria-hidden="true"></i></span></Link></NavItem>
                                 <TooltipReact place="bottom" id="Purchase History"><span>History</span></TooltipReact>
-                                <NavItem><Link className="nav-link"  to='/notification' data-tip data-for="Notifications"><span><i class="fa fa-bell" aria-hidden="true"></i></span></Link>
+                                <NavItem><Link className="nav-link"  to='/notification' data-tip data-for="Notifications"><span><i class="fa fa-bell tip" aria-hidden="true"></i></span></Link>
                                 </NavItem> 
                                 <TooltipReact place="bottom" id="Notifications"><span>Notifications</span></TooltipReact>
                             </Nav>
